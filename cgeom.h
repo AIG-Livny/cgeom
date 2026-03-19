@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA
  */
 
 #ifndef CGEOM_H
@@ -5107,8 +5107,9 @@ static inline mat4d mat4d_perspective_fov( mat4d m, cgd_t fov, cgd_t aspect,
       mat4d: mat4d_perspective_fov )( ( m ), ( fov_radians ), ( aspect ), \
                                       ( near ), ( far ) )
 
-static inline mat4f mat4f_perspective_infinite( cgf_t fov_radians, cgf_t aspect,
-                                                cgf_t near ) {
+static inline mat4f mat4f_perspective_infinite_matrix( cgf_t fov_radians,
+                                                       cgf_t aspect,
+                                                       cgf_t near ) {
   cgf_t f = (cgf_t)1.0 / CG_fTAN( fov_radians * (cgf_t)0.5 );
   return (mat4f){ .m11 = f / aspect,
                   .m21 = 0.0f,
@@ -5128,8 +5129,9 @@ static inline mat4f mat4f_perspective_infinite( cgf_t fov_radians, cgf_t aspect,
                   .m44 = 0.0f };
 }
 
-static inline mat4d mat4d_perspective_infinite( cgd_t fov_radians, cgd_t aspect,
-                                                cgd_t near ) {
+static inline mat4d mat4d_perspective_infinite_matrix( cgd_t fov_radians,
+                                                       cgd_t aspect,
+                                                       cgd_t near ) {
   cgd_t f = (cgd_t)1.0 / CG_dTAN( fov_radians * (cgd_t)0.5 );
   return (mat4d){ .m11 = f / aspect,
                   .m21 = 0.0,
@@ -5149,24 +5151,22 @@ static inline mat4d mat4d_perspective_infinite( cgd_t fov_radians, cgd_t aspect,
                   .m44 = 0.0 };
 }
 
-static inline mat4f mat4f_apply_perspective_infinite( mat4f m, cgf_t fov,
-                                                      cgf_t aspect,
-                                                      cgf_t near ) {
-  return multiply( mat4f_perspective_infinite( fov, aspect, near ), m );
+static inline mat4f mat4f_perspective_infinite( mat4f m, cgf_t fov,
+                                                cgf_t aspect, cgf_t near ) {
+  return multiply( mat4f_perspective_infinite_matrix( fov, aspect, near ), m );
 }
 
-static inline mat4d mat4d_apply_perspective_infinite( mat4d m, cgd_t fov,
-                                                      cgd_t aspect,
-                                                      cgd_t near ) {
-  return multiply( mat4d_perspective_infinite( fov, aspect, near ), m );
+static inline mat4d mat4d_perspective_infinite( mat4d m, cgd_t fov,
+                                                cgd_t aspect, cgd_t near ) {
+  return multiply( mat4d_perspective_infinite_matrix( fov, aspect, near ), m );
 }
 
 // Set perspective infinite
-#define apply_perspective_infinite( m, fov_radians, aspect, near ) \
+#define perspective_infinite( m, fov_radians, aspect, near ) \
   _Generic( ( m ), \
-      mat4f: mat4f_apply_perspective_infinite, \
-      mat4d: mat4d_apply_perspective_infinite )( ( m ), ( fov_radians ), \
-                                                 ( aspect ), ( near ) )
+      mat4f: mat4f_perspective_infinite, \
+      mat4d: mat4d_perspective_infinite )( ( m ), ( fov_radians ), ( aspect ), \
+                                           ( near ) )
 
 #ifdef CGEOM_EASES
 
