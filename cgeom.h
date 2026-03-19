@@ -1148,32 +1148,6 @@ static inline vec3d vec4d_to_vec3d( vec4d v ) {
       vec4d: vec4d_to_vec2d )( vec )
 
 // cast higher vector to vec2 by ignoring other components
-#define vec_to_vec2i( vec ) \
-  _Generic( ( vec ), \
-      vec2i: vec2i_to_vec2i, \
-      vec2f: vec2f_to_vec2i, \
-      vec2d: vec2d_to_vec2i, \
-      vec3i: vec3i_to_vec2i, \
-      vec3f: vec3f_to_vec2i, \
-      vec3d: vec3d_to_vec2i, \
-      vec4i: vec4i_to_vec2i, \
-      vec4f: vec4f_to_vec2i, \
-      vec4d: vec4d_to_vec2i )( vec )
-
-// cast higher vector to vec2 by ignoring other components
-#define vec_to_vec2f( vec ) \
-  _Generic( ( vec ), \
-      vec2i: vec2i_to_vec2f, \
-      vec2f: vec2f_to_vec2f, \
-      vec2d: vec2d_to_vec2f, \
-      vec3i: vec3i_to_vec2f, \
-      vec3f: vec3f_to_vec2f, \
-      vec3d: vec3d_to_vec2f, \
-      vec4i: vec4i_to_vec2f, \
-      vec4f: vec4f_to_vec2f, \
-      vec4d: vec4d_to_vec2f )( vec )
-
-// cast higher vector to vec2 by ignoring other components
 #define vec_to_vec3i( vec ) \
   _Generic( ( vec ), \
       vec3i: vec3i_to_vec3i, \
