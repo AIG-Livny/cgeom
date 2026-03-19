@@ -1,0 +1,12 @@
+---
+SpacesInParens: Custom
+SpacesInParensOptions:
+  InConditionalStatements: true
+  Other: true
+SpaceBeforeParens: Never
+IndentCaseLabels: true
+AllowShortCaseLabelsOnASingleLine: true
+AlignConsecutiveAssignments: {}
+PointerAlignment: Left
+BraceWrapping: {}
+AlignEscapedNewlines: DontAlign

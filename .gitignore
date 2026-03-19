@@ -1,0 +1,6 @@
+c-vector
+utest.h
+*.a
+obj
+bin
+*.swp

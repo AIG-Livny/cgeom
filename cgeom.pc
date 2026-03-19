@@ -1,0 +1,5 @@
+Name: cgeom
+Description: c geometry library
+Version: 0.1.0
+Cflags: -I${pcfiledir}
+Libs: -lm
